@@ -121,9 +121,13 @@ async function lint(
 
   let rulesetPath = null
   if (typeof ruleset === 'string') {
-    rulesetPath = path.resolve(targetDir, ruleset)
+    if (config.isAbsoluteURL(ruleset)) {
+      rulesetPath = ruleset
+    } else {
+      rulesetPath = path.resolve(targetDir, ruleset)
+    }
   } else if (!ruleset) {
-    rulesetPath = targetDir
+    rulesetPath = config.findConfig(targetDir)
   }
 
   if (rulesetPath !== null) {

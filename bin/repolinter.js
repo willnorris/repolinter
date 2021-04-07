@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: Apache-2.0
 const path = require('path')
 const repolinter = require('..')
-const config = require('../lib/config')
 const rimraf = require('rimraf')
 const git = require('simple-git/promise')()
 /** @type {any} */
@@ -64,17 +63,6 @@ require('yargs')
         })
     },
     async (/** @type {any} */ argv) => {
-      let rulesetParsed = null
-      // resolve the ruleset if a url is specified
-      if (argv.rulesetUrl) {
-        try {
-          rulesetParsed = await config.loadConfig(argv.rulesetUrl)
-        } catch (e) {
-          console.error(e)
-          process.exitCode = 1
-          return
-        }
-      }
       let tmpDir = null
       // temporarily clone a git repo to lint
       if (argv.git) {
@@ -93,7 +81,7 @@ require('yargs')
       const output = await repolinter.lint(
         tmpDir || path.resolve(process.cwd(), argv.directory),
         argv.allowPaths,
-        rulesetParsed || argv.rulesetFile,
+        argv.rulesetUrl || argv.rulesetFile,
         argv.dryRun
       )
       // create the output
