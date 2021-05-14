@@ -1,0 +1,9 @@
+{
+  "name": "Repolinter",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {"VARIANT": "14"}
+  },
+  "extensions": ["dbaeumer.vscode-eslint"],
+  "remoteUser": "node"
+}
