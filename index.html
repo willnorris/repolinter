@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset='utf-8'>
-  <title>repolinter 0.11.1 | Documentation</title>
+  <title>repolinter 0.11.2 | Documentation</title>
   <meta name='description' content='Lint open source repositories'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet'>
@@ -15,7 +15,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>repolinter</h3>
-          <div class='mb1'><code>0.11.1</code></div>
+          <div class='mb1'><code>0.11.2</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -851,6 +851,7 @@ relative to the original file path as <code>/etc/repolinter/default.yaml</code>.
 <li><a href="#git-working-tree"><code>git-working-tree</code></a></li>
 <li><a href="#json-schema-passes"><code>json-schema-passes</code></a></li>
 <li><a href="#license-detectable-by-licensee"><code>license-detectable-by-licensee</code></a></li>
+<li><a href="#best-practices-badge-present"><code>best-practices-badge-present</code></a></li>
 </ul>
 </li>
 </ul>
@@ -1447,6 +1448,28 @@ a bit time consuming, depending on the size of the Git history.</p>
 </table>
 <h3><code>license-detectable-by-licensee</code></h3>
 <p>Fails if Licensee doesn't detect the repository's license. This rule takes no inputs, but requires <code>licensee</code> in the path, see <a href="#command-line-dependencies">command line dependencies</a> for details.</p>
+<h3><code>best-practices-badge-present</code></h3>
+<p>Check Best Practices Badge is present in README. Optionally check a certain badge level is accomplished.</p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>minPercentage</code></td>
+<td>No</td>
+<td><code>integer</code></td>
+<td><code>null</code></td>
+<td>Minimum <a href="https://github.com/coreinfrastructure/best-practices-badge/blob/main/doc/api.md#tiered-percentage-in-openssf-best-practices-badge">Tiered Percentage</a> accomplished by project. <code>passing=100</code>, <code>silver=200</code>, <code>gold=300</code>, set to <code>0</code> or <code>null</code> to disable check.</td>
+</tr>
+</tbody>
+</table>
 
     <div class='pre p1 fill-light mt0'>Rules</div>
   
